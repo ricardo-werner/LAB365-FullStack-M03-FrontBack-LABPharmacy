@@ -1,0 +1,148 @@
+{
+  "users": [
+    {
+      "email": "soeu@soeu.com.br",
+      "password": "A12345678",
+      "confirmPassword": "A12345678",
+      "id": 1
+    },
+    {
+      "email": "teste@teste.com.br",
+      "password": "123456789",
+      "confirmPassword": "123456789",
+      "id": 2
+    },
+    {
+      "email": "fui@prala.com.br",
+      "password": "123456789",
+      "confirmPassword": "123456789",
+      "id": 3
+    }
+  ],
+  "pharmacys": [
+    {
+      "razaosocial": "Farmácia Floripa LTDA",
+      "CNPJ": "12.345.678/0001-01",
+      "fantasia": "Farmácia Floripa",
+      "email": "farmaciafloripa@gmail.com",
+      "phone": "(48) 3211-0000",
+      "celular": "(48) 99999-0000",
+      "logradouro": "Rua das Flores",
+      "numero": "123",
+      "bairro": "Canasvieiras",
+      "complemento": "Sala 101",
+      "localidade": "Florianópolis",
+      "uf": "SC",
+      "latitude": "-27.4314190",
+      "longitude": "-48.4666523",
+      "cep": "88054-300",
+      "id": 1
+    },
+    {
+      "razaosocial": "Drogaria Vitale LTDA",
+      "CNPJ": "23.456.789/0001-01",
+      "fantasia": "Drogaria Vitale",
+      "email": "drogariavitale@gmail.com",
+      "phone": "(48) 3333-0000",
+      "celular": "(48) 98888-0000",
+      "logradouro": "Avenida Beira Mar",
+      "numero": "456",
+      "bairro": "Praia dos Ingleses",
+      "complemento": "Loja 02",
+      "localidade": "Florianópolis",
+      "uf": "SC",
+      "latitude": "-27.4284766",
+      "longitude": "-48.4034269",
+      "cep": "88058-539",
+      "id": 2
+    },
+    {
+      "razaosocial": "Farmácia Boa Saúde LTDA",
+      "CNPJ": "34.567.890/0001-01",
+      "fantasia": "Farmácia Boa Saúde",
+      "email": "farmaciaboasaude@gmail.com",
+      "phone": "(48) 4444-0000",
+      "celular": "(48) 97777-0000",
+      "logradouro": "Rua das Palmeiras",
+      "numero": "789",
+      "bairro": "Jardim Atlântico",
+      "complemento": "Sala 203",
+      "localidade": "Florianópolis",
+      "uf": "SC",
+      "latitude": "-27.6065557",
+      "longitude": "-48.4661271",
+      "cep": "88085-400",
+      "id": 3
+    },
+    {
+      "razaosocial": "Farmácia Natural Vida LTDA",
+      "CNPJ": "45.678.901/0001-01",
+      "fantasia": "Farmácia Natural Vida",
+      "email": "farmacianaturalvida@gmail.com",
+      "phone": "(48) 5555-0000",
+      "celular": "(48) 96666-0000",
+      "logradouro": "Avenida das Araras",
+      "numero": "321",
+      "bairro": "Campeche",
+      "complemento": "Loja 05",
+      "localidade": "Florianópolis",
+      "uf": "SC",
+      "latitude": "-27.6003148",
+      "longitude": "-48.4657123",
+      "cep": "88062-075",
+      "id": 4
+    }
+  ],
+  "imagem": [],
+  "medications": [
+    {
+      "medicamentos": "Paracetamol",
+      "laboratorio": "Medley",
+      "dosagem": "500 mg a 1 g, a cada 4 a 6 horas",
+      "preco": "10,00",
+      "tipo": "Medicamento comum",
+      "descricao": "O Paracetamol é um medicamento analgésico e antitérmico utilizado no alívio de dores de intensidade leve a moderada, bem como no tratamento de febre. Ele age no sistema nervoso central para reduzir a dor e a inflamação. A dosagem recomendada para adultos é de 500 mg a 1 g, a cada 4 a 6 horas, não excedendo a dose máxima diária de 4 g.",
+      "id": 1
+    },
+    {
+      "imagem": "",
+      "medicamentos": "Tramadol",
+      "laboratorio": "Medley",
+      "dosagem": "50 a 100 mg a cada 4 a 6 horas",
+      "preco": "300,00",
+      "tipo": "Medicamento controlado",
+      "descricao": "O Tramadol é um analgésico opioide usado para aliviar a dor moderada a intensa. O medicamento atua no sistema nervoso central, diminuindo a percepção de dor. A dosagem recomendada para adultos é de 50 a 100 mg a cada 4 a 6 horas, não excedendo a dose máxima diária de 400 mg.",
+      "id": 2
+    },
+    {
+      "imagem": "",
+      "medicamentos": "Pinicilina",
+      "laboratorio": "Pharmus",
+      "dosagem": "20ml",
+      "preco": "120,00",
+      "tipo": "Medicamento controlado",
+      "descricao": "A Penicilina é um antibiótico usado para tratar infecções bacterianas, como amigdalite, bronquite, pneumonia, meningite e infecções urinárias. O medicamento funciona inibindo o crescimento bacteriano e é administrado por via oral ou injetável. A dosagem recomendada varia de acordo com o tipo e gravidade da infecção.",
+      "id": 3
+    },
+    {
+      "imagem": "",
+      "medicamentos": "Novalgina 1g",
+      "laboratorio": "Sanofi",
+      "dosagem": "1g a cada 6 horas",
+      "preco": "25,00",
+      "tipo": "Medicamento comum",
+      "descricao": "A Novalgina 1g é um medicamento analgésico e antitérmico utilizado no tratamento de dores e febre de intensidade moderada a forte. Ele age inibindo a produção de substâncias responsáveis pela dor e febre no organismo. A dosagem recomendada para adultos é de 1 comprimido a cada 6 horas, não excedendo a dose máxima diária de 4 comprimidos.",
+      "id": 4
+    },
+    {
+      "imagem": "",
+      "medicamentos": "Naldecon",
+      "laboratorio": "Biolab",
+      "dosagem": "10 ml a cada 8 horas",
+      "preco": "45,00",
+      "tipo": "Medicamento comum",
+      "descricao": "O Naldecom Xarope é um medicamento expectorante utilizado para tratar a tosse produtiva. Ele age fluidificando as secreções, facilitando a sua eliminação. A dosagem recomendada para adultos é de 10 ml a cada 8 horas. É importante beber bastante líquido enquanto estiver utilizando o medicamento para ajudar a expelir as secreções.",
+      "id": 5
+    }
+  ]
+}
