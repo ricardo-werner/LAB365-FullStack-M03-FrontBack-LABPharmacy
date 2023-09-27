@@ -57,18 +57,22 @@ module.exports = {
         allowNull: false,
         defaultValue: 'Não Controlado'
       },
-      status: {
-        type: Sequelize.ENUM,
-        values: ['disponivel', 'indisponivel'],
-        allowNull: false,
-        defaultValue: 'disponivel'
-      },
       preco_unitario: {
         type: Sequelize.DECIMAL(10, 2),
         allowNull: false,
       },
       quantidade: {
         type: Sequelize.INTEGER,
+        allowNull: false,
+      },
+      status: {
+        type: Sequelize.ENUM,
+        values: ['disponivel', 'indisponivel'],
+        allowNull: false,
+        defaultValue: 'disponivel'
+      },
+      numero_nf: {
+        type: Sequelize.STRING,
         allowNull: false,
       },
       created_at: {
