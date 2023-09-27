@@ -107,7 +107,7 @@ module.exports = {
   },
 
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('depositos');
+    await queryInterface.dropTable('farmacias');
   }
 };
 
