@@ -213,8 +213,8 @@ Este projeto já vem com o Bootstrap 5 e react-bootstrap instalado e configurado
 
 ## Autores:
 Turma: Full-Stack - Itaguaçu
-Squad :ItaguaDevs
-Mentoria : Prof. Pedro Henrique Silva
+Squad: ItaguaDevs
+Mentoria: Prof. Pedro Henrique Silva
 Senai/SC: Serviço Nacional de Aprendizagem Industrial
-LAB365 : espaço do @senai.sc para desenvolver as habilidades do futuro
+LAB365: espaço do @senai.sc para desenvolver as habilidades do futuro
 Floripa Mais Tech  
