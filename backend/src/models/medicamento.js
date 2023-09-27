@@ -87,17 +87,6 @@ const Medicamento = connection.define("medicamento", {
             },
         },
     },
-    status: {
-        type: ENUM,
-        values: ['disponivel', 'indisponivel'],
-        allowNull: false,
-        defaultValue: 'disponivel',
-        validate: {
-            notNull: {
-                message: "Status não se pode deixar vazio",
-            },
-        },
-    },
     preco_unitario: {
         type: DECIMAL(10, 2),
         allowNull: false,
@@ -113,6 +102,26 @@ const Medicamento = connection.define("medicamento", {
         validate: {
             notNull: {
                 message: "Quantidade não se pode deixar vazio",
+            },
+        },
+    },
+    numero_nf: {
+        type: STRING,
+        allowNull: false,
+        validate: {
+            notNull: {
+                message: "Número da NF não se pode deixar vazio",
+            },
+        },
+    },
+    status: {
+        type: ENUM,
+        values: ['disponivel', 'indisponivel'],
+        allowNull: false,
+        defaultValue: 'disponivel',
+        validate: {
+            notNull: {
+                message: "Status não se pode deixar vazio",
             },
         },
     },
