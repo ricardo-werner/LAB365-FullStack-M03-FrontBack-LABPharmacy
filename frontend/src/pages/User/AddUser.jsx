@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import AddUserCard  from "../../components/User/AddUserCard";
+import AddUserCard from "../../components/User/AddUserCard";
 
 
 const AddUserPage = () => {
@@ -14,13 +14,6 @@ const AddUserPage = () => {
     return (
         <>
             <AddUserCard />
-            <div>
-                <input
-                    type="button" 
-                    className="btn btn-danger mx-3 my-2" 
-                    value="Voltar" 
-                    onClick={handleGoBack} />
-            </div>
         </>
     );
 }
