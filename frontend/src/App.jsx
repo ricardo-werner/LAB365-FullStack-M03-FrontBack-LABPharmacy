@@ -1,17 +1,15 @@
-import React from 'react' ;
-import './App.css';
+import React from 'react';
 import AppRouter from './Router';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
-
-const API = "http://localhost:5000";
+import './App.css';
 
 function App() {
 
-return (
+  return (
     <div className="App">
       <Header />
-      <AppRouter/>
+      <AppRouter />
       <Footer />
     </div>
   );
