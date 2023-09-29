@@ -21,7 +21,7 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      data_nascimento: {
+      dataNascimento: {
         type: Sequelize.DATE,
         allowNull: false,
       },
@@ -29,7 +29,7 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      telefone: {
+      celular: {
         type: Sequelize.STRING,
         allowNull: false,
       },
