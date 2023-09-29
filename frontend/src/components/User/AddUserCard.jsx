@@ -43,20 +43,17 @@ const schema = yup
 function AddUser() {
   const {
     register,
-    handleSubmit,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
   });
 
-  async function onSubmit(userData) {
+  async function handleSubmit(userData) {
+    console.log(userData)
     try {
-      await axios.post('http://localhost:3333/api/createOneUsuario', userData, {
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      });
-      console.log(userData);
+      const response =
+        await axios.post('http://localhost:3333/api/createOneUsuario', userData);
+      console.log(response.data)
       alert("Usuário cadastrado com sucesso!");
     } catch (error) {
       console.log(error);
@@ -107,7 +104,7 @@ function AddUser() {
       </h2>
 
       <form className="row g-3 mt-1 ps-4 pe-4 pt-2"
-        onSubmit={handleSubmit(onSubmit)}
+        onSubmit={handleSubmit}
       >
         <fieldset className="col-md-6 col-lg-4 mt-3">
           <label htmlFor="name" className="form-med-label">
