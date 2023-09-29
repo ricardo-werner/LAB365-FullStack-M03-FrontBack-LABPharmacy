@@ -12,9 +12,9 @@ class UsuarioController {
                 nome,
                 sobrenome,
                 genero,
-                data_nascimento,
+                dataNascimento,
                 cpf,
-                telefone,
+                celular,
                 email,
                 senha,
                 status
@@ -37,9 +37,9 @@ class UsuarioController {
                   nome,
                   sobrenome,
                   genero,
-                  data_nascimento,
+                  dataNascimento,
                   cpf,
-                  telefone,
+                  celular,
                   email,
                   senha,
                   status
@@ -152,7 +152,7 @@ class UsuarioController {
                 nome,
                 sobrenome,
                 genero,
-                telefone
+                celular
             } = request.body;
 
             const usuario = await Usuario.findByPk(id);
@@ -165,7 +165,7 @@ class UsuarioController {
             }
 
             // Verifica se pelo menos um campo está presente na requisição para permitir a atualização
-            if (!nome && !sobrenome && !genero && !telefone) {
+            if (!nome && !sobrenome && !genero && !celular) {
                 return response.status(400).send({
                     message: "Falha na operação de atualizar usuário",
                     cause: "Nenhum campo para atualizar foi fornecido"
@@ -182,8 +182,8 @@ class UsuarioController {
             if (genero !== undefined) {
                 usuario.genero = genero;
             }
-            if (telefone !== undefined) {
-                usuario.telefone = telefone;
+            if (celular !== undefined) {
+                usuario.celular = celular;
             }
 
             // Salva as alterações no banco de dados

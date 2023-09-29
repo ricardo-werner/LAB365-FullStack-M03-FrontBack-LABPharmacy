@@ -29,7 +29,7 @@ const Usuario = connection.define("usuario", {
       },
     },
   },
-  data_nascimento: {
+  dataNascimento: {
     type: DATE,
     allowNull: false,
     validate: {
@@ -56,7 +56,7 @@ const Usuario = connection.define("usuario", {
     unique: { message: "CPF já existe" }
   },
 
-  telefone: {
+  celular: {
     type: STRING,
     allowNull: true
   },
