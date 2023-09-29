@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -21,82 +21,69 @@ const schema = yup
       .string()
       .email("Digite um email válido")
       .required("O email é obrigatório"),
-    CPF: yup
+    cpf: yup
       .string()
       .required("O CPF é obrigatório"),
     celular: yup
       .string()
       .required("O celular é obrigatório"),
-    dataNascimento: yup
+    data_nascimento: yup
       .string(),
-    password: yup
+    senha: yup
       .string()
       .min(8, "A senha deve ter pelo menos 8 digitos")
       .required("A senha é obrigatória"),
     confirmPassword: yup
       .string()
       .required("Confirmar a senha é obrigatório")
-      .oneOf([yup.ref("password")], "As senhas devem ser iguais"),
+      .oneOf([yup.ref("senha")], "As senhas devem ser iguais"),
   })
   .required();
 
 function AddUser() {
+  const [genero, setGenero] = useState("");
+
   const {
     register,
+    handleSubmit,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
   });
 
-  async function handleSubmit(userData) {
-    console.log(userData)
+  register("genero", { 
+    required: true,
+    validate: value => {
+      if (value !== "feminino" || value !== "masculino") {
+        return "Inválido"; 
+      } 
+    }
+  })
+
+  const onSubmit = async (data, e) =>  {
+    console.log("dados do formulário", data);
     try {
-      const response =
-        await axios.post('http://localhost:3333/api/createOneUsuario', userData);
-      console.log(response.data)
-      alert("Usuário cadastrado com sucesso!");
+      const response = await axios.post(
+        "http://localhost:3333/api/createOneUsuario",
+        data
+      );
+      console.log(response);
+      // alert("Usuário cadastrado com sucesso!");
     } catch (error) {
       console.log(error);
-      alert("Não foi possível cadastrar o usuário, por favor tente novamente.");
-    };
-  };
+      console.log(error.response.data);
+      // alert("Não foi possível cadastrar o usuário, por favor, tente novamente.");
+    }
+  }
+
+
+
 
   const history = useNavigate();
   function handleGoBack() {
     history(-1);
   }
 
-  // return (
-  //   <form className="add-form-container" onSubmit={handleSubmit(onSubmit)}>
-  //     <h2 className="add-titulo">Cadastro de Novo Usuário</h2>
-  //     <div>
-  //       <fieldset className="add-field-master">
-  //         <label>
-  //           Nome
-  //           <input type="text" {...register("name", { required: true })} />
-  //           <span>{errors.name?.message}</span>
-  //         </label>
-  //         <label>
-  //           Email
-  //           <input type="text" {...register("email")} />
-  //           <span>{errors.email?.message}</span>
-  //         </label>
-  //         <label>
-  //           Senha
-  //           <input type="password" {...register("password")} />
-  //           <span>{errors.password?.message}</span>
-  //         </label>
-  //         <label>
-  //           Confirmar Senha
-  //           <input type="password" {...register("confirmPassword")} />
-  //           <span>{errors.confirmPassword?.message}</span>
-  //         </label>
-  //         <button className="btn-add-user" type="submit">Cadastrar-se</button>
-  //       </fieldset>
-  //     </div>
-  //   </form>
-
-  // );
   return (
     <div className="med-container mx-3 mt-1" >
       <h2>
@@ -104,17 +91,17 @@ function AddUser() {
       </h2>
 
       <form className="row g-3 mt-1 ps-4 pe-4 pt-2"
-        onSubmit={handleSubmit}
+        onSubmit={handleSubmit(onSubmit)}
       >
         <fieldset className="col-md-6 col-lg-4 mt-3">
           <label htmlFor="name" className="form-med-label">
             Nome
           </label>
-          <input type="tect"
+          <input type="text"
             className="form-control"
             placeholder="Nome"
-            {...register("name", { required: true })}
-            aria-invalid={errors.nome ? "true" : "false"}
+            {...register("name")}
+            aria-invalid={errors.name ? "true" : "false"}
           />
           {errors.name?.type === 'required' && <p role="alert">Nome Obrigatório</p>}
         </fieldset>
@@ -126,7 +113,7 @@ function AddUser() {
             type="text"
             className="form-control"
             placeholder="Sobrenome"
-            {...register("sobrenome", { required: "Sobrenome Obrigatório" })}
+            {...register("sobrenome")}
             aria-invalid={errors.sobrenome ? "true" : "false"}
           />
           {errors.sobrenome && <p role="alert">{errors.sobrenome?.message}</p>}
@@ -140,8 +127,10 @@ function AddUser() {
               className="form-check-input"
               type="radio"
               name="exampleRadios"
-              value="opcao1"
-              {...register("feminino", { required: true })}
+              value="feminino"
+              {...register("genero")}
+              onChange={() => setGenero("feminino")}
+              checked={genero === "feminino"} 
               aria-invalid={errors.feminino ? "true" : "false"}
             />
             <label htmlFor="exampleRadios1" className="form-check-label">Feminino</label>
@@ -151,8 +140,10 @@ function AddUser() {
               className="form-check-input"
               type="radio"
               name="exampleRadios2"
-              value="opcao2"
-              {...register("masculino", { required: true })}
+              value="masculino"
+              {...register("genero")}
+              onChange={() => setGenero("masculino")}
+              checked={genero === "masculino"}
               aria-invalid={errors.masculino ? "true" : "false"}
             />
             <label htmlFor="exampleRadios2" className="form-check-label">Masculino</label>
@@ -164,10 +155,10 @@ function AddUser() {
             CPF
           </label>
           <input
-            type="CPF"
+            type="cpf"
             className="form-control"
             placeholder="CPF"
-            {...register("CPF", { required: "CPF Obrigatório" })}
+            {...register("cpf", { required: "CPF Obrigatório" })}
             aria-invalid={errors.CPF ? "true" : "false"}
           />
           {errors.CPF && <p role="alert">{errors.CPF?.message}</p>}
@@ -199,36 +190,36 @@ function AddUser() {
           {errors.celular && <p role="alert">{errors.celular?.message}</p>}
         </fieldset>
         <fieldset className="col-md-6 col-lg-4 mt-3">
-          <label htmlFor="dataNascimento" className="form-med-label">
+          <label htmlFor="data_nascimento" className="form-med-label">
             Data de Nascimento
           </label>
           <input
             type="text"
             className="form-control"
             placeholder="Data de Nascimento"
-            {...register("dataNascimento")}
-            aria-invalid={errors.dataNascimento ? "true" : "false"}
+            {...register("data_nascimento")}
+            aria-invalid={errors.data_nascimento ? "true" : "false"}
           />
-          {errors.dataNascimento && <p role="alert">{errors.dataNascimento?.message}</p>}
+          {errors.data_nascimento && <p role="alert">{errors.data_nascimento?.message}</p>}
         </fieldset>
         <fieldset className="col-md-6 col-lg-4 mt-3">
-          <label htmlFor="password" className="form-med-label">
+          <label htmlFor="senha" className="form-med-label">
             Senha
           </label>
           <input
-            type="password"
+            type="senha"
             className="form-control"
             placeholder="Senha ..."
-            {...register("password", { required: "Senha Obrigatória" })}
-            aria-invalid={errors.password ? "true" : "false"}
+            {...register("senha", { required: "Senha Obrigatória" })}
+            aria-invalid={errors.senha ? "true" : "false"}
           />
-          {errors.password && <p role="alert">{errors.password?.message}</p>}
+          {errors.senha && <p role="alert">{errors.senha?.message}</p>}
         </fieldset><fieldset className="col-md-6 col-lg-4 mt-3">
           <label htmlFor="confirmPassword" className="form-med-label">
             Confirmar Senha
           </label>
           <input
-            type="password"
+            type="senha"
             className="form-control"
             placeholder="Confirmar Senha.."
             {...register("confirmPassword", { required: "Obrigatório" })}
