@@ -19,8 +19,7 @@ class UsuarioController {
                 senha,
                 status
             } = request.body;
-
-            // Verifica se já existe um usuário com o mesmo email
+  
             const usuarioExistente = await Usuario.findOne({
                 where: { email: email }
             });
@@ -32,19 +31,29 @@ class UsuarioController {
                 });
             }
 
-            const novoUsuario = await Usuario.create({
-                nome,
-                sobrenome,
-                genero,
-                data_nascimento,
-                cpf,
-                telefone,
-                email,
-                senha,
-                status
-            });
-
-            return response.status(201).send(novoUsuario);
+           
+            try {
+                const novoUsuario = await Usuario.create({
+                  nome,
+                  sobrenome,
+                  genero,
+                  data_nascimento,
+                  cpf,
+                  telefone,
+                  email,
+                  senha,
+                  status
+                });
+              
+                return response.status(201).send(novoUsuario);
+                
+              } catch (error) {
+                console.error(error);
+                return response.status(500).send({
+                  message: "Falha na operação de criar usuário",
+                  cause: "Ocorreu um erro durante a criação do usuário."
+                });
+              }
         } catch (error) {
             const status = error.message.status || 400
             const message = error.message.msg || error.message
