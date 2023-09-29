@@ -8,7 +8,7 @@ import "../../components/User/AddUserCard.css";
 
 const schema = yup
   .object({
-    name: yup
+    nome: yup
       .string()
       .required("O nome é obrigatório"),
     sobrenome: yup
@@ -24,9 +24,9 @@ const schema = yup
     cpf: yup
       .string()
       .required("O CPF é obrigatório"),
-    celular: yup
+    telefone: yup
       .string()
-      .required("O celular é obrigatório"),
+      .required("O telefone é obrigatório"),
     data_nascimento: yup
       .string(),
     senha: yup
@@ -61,18 +61,25 @@ function AddUser() {
   })
 
   const onSubmit = async (data, e) =>  {
-    console.log("dados do formulário", data);
+
     try {
       const response = await axios.post(
         "http://localhost:3333/api/createOneUsuario",
         data
       );
+
       console.log(response);
-      // alert("Usuário cadastrado com sucesso!");
+     if(response.status === 201) {
+      
+      alert("Usuário cadastrado com sucesso!");
+     }
     } catch (error) {
-      console.log(error);
-      console.log(error.response.data);
-      // alert("Não foi possível cadastrar o usuário, por favor, tente novamente.");
+      if(error.response.status) {
+      
+        alert("Email já cadastrado!");
+      }
+
+      alert("Erro ao cadastrar usuário!");
     }
   }
 
@@ -94,16 +101,16 @@ function AddUser() {
         onSubmit={handleSubmit(onSubmit)}
       >
         <fieldset className="col-md-6 col-lg-4 mt-3">
-          <label htmlFor="name" className="form-med-label">
+          <label htmlFor="nome" className="form-med-label">
             Nome
           </label>
           <input type="text"
             className="form-control"
             placeholder="Nome"
-            {...register("name")}
-            aria-invalid={errors.name ? "true" : "false"}
+            {...register("nome")}
+            aria-invalid={errors.nome ? "true" : "false"}
           />
-          {errors.name?.type === 'required' && <p role="alert">Nome Obrigatório</p>}
+          {errors.nome?.type === 'required' && <p role="alert">Nome Obrigatório</p>}
         </fieldset>
         <fieldset className="col-md-6 col-lg-4 mt-3">
           <label htmlFor="sobrenome" className="form-med-label">
@@ -126,7 +133,7 @@ function AddUser() {
             <input
               className="form-check-input"
               type="radio"
-              name="exampleRadios"
+              nome="exampleRadios"
               value="feminino"
               {...register("genero")}
               onChange={() => setGenero("feminino")}
@@ -139,7 +146,7 @@ function AddUser() {
             <input
               className="form-check-input"
               type="radio"
-              name="exampleRadios2"
+              nome="exampleRadios2"
               value="masculino"
               {...register("genero")}
               onChange={() => setGenero("masculino")}
@@ -177,17 +184,17 @@ function AddUser() {
           {errors.email && <p role="alert">{errors.email?.message}</p>}
         </fieldset>
         <fieldset className="col-md-6 col-lg-4 mt-3">
-          <label htmlFor="celular" className="form-med-label">
+          <label htmlFor="telefone" className="form-med-label">
             Celular
           </label>
           <input
             type="text"
             className="form-control"
             placeholder="Celular"
-            {...register("celular", { required: "Celular Obrigatório" })}
-            aria-invalid={errors.celular ? "true" : "false"}
+            {...register("telefone", { required: "Celular Obrigatório" })}
+            aria-invalid={errors.telefone ? "true" : "false"}
           />
-          {errors.celular && <p role="alert">{errors.celular?.message}</p>}
+          {errors.telefone && <p role="alert">{errors.telefone?.message}</p>}
         </fieldset>
         <fieldset className="col-md-6 col-lg-4 mt-3">
           <label htmlFor="data_nascimento" className="form-med-label">
