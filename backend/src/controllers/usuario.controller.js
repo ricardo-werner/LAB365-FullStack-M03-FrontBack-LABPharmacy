@@ -19,7 +19,7 @@ class UsuarioController {
                 senha,
                 status
             } = request.body;
-  
+            console.log(request.body)
             const usuarioExistente = await Usuario.findOne({
                 where: { email: email }
             });
@@ -31,29 +31,29 @@ class UsuarioController {
                 });
             }
 
-           
+
             try {
                 const novoUsuario = await Usuario.create({
-                  nome,
-                  sobrenome,
-                  genero,
-                  dataNascimento,
-                  cpf,
-                  celular,
-                  email,
-                  senha,
-                  status
+                    nome,
+                    sobrenome,
+                    genero,
+                    dataNascimento,
+                    cpf,
+                    celular,
+                    email,
+                    senha,
+                    status
                 });
-              
+
                 return response.status(201).send(novoUsuario);
-                
-              } catch (error) {
+
+            } catch (error) {
                 console.error(error);
                 return response.status(500).send({
-                  message: "Falha na operação de criar usuário",
-                  cause: "Ocorreu um erro durante a criação do usuário."
+                    message: "Falha na operação de criar usuário",
+                    cause: "Ocorreu um erro durante a criação do usuário."
                 });
-              }
+            }
         } catch (error) {
             const status = error.message.status || 400
             const message = error.message.msg || error.message
