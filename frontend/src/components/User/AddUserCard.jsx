@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import axios from "axios";
+import moment from "moment";
 import "../../components/User/AddUserCard.css";
 
 const schema = yup
@@ -60,7 +61,14 @@ function AddUser() {
     }
   })
 
+  function formatarData(data) {
+    // Use o Moment.js para converter a data de DD-MM-YYYY para YYYY-MM-DD
+    return moment(data, "DD-MM-YYYY").format("YYYY-MM-DD");
+  }
+
   const onSubmit = async (data, e) => {
+    // Formate a data de nascimento
+    data.dataNascimento = formatarData(data.dataNascimento);
 
     try {
       const response = await axios.post(
@@ -70,18 +78,44 @@ function AddUser() {
 
       console.log(response);
       if (response.status === 201) {
-
         alert("Usuário cadastrado com sucesso!");
+        setTimeout(() => {
+          window.location.reload();
+        }, 2000);
       }
     } catch (error) {
-      if (error.response.status) {
-
+      if (error.response && error.response.status === 400) {
         alert("E-mail já cadastrado!");
+      } else {
+        alert("Erro ao cadastrar usuário!");
       }
-
-      alert("Erro ao cadastrar usuário!");
     }
-  }
+  };
+
+
+
+  // const onSubmit = async (data, e) => {
+
+  //   try {
+  //     const response = await axios.post(
+  //       "http://localhost:3333/api/createOneUsuario",
+  //       data
+  //     );
+
+  //     console.log(response);
+  //     if (response.status === 201) {
+
+  //       alert("Usuário cadastrado com sucesso!");
+  //     }
+  //   } catch (error) {
+  //     if (error.response.status) {
+
+  //       alert("E-mail já cadastrado!");
+  //     }
+
+  //     alert("Erro ao cadastrar usuário!");
+  //   }
+  // }
 
 
 
