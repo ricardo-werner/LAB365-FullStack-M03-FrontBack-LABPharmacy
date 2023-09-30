@@ -79,9 +79,10 @@ function AddUser() {
       console.log(response);
       if (response.status === 201) {
         alert("Usuário cadastrado com sucesso!");
-        setTimeout(() => {
-          window.location.reload();
-        }, 2000);
+        // setTimeout(() => {
+        //   window.location.reload();
+        // }, 2000);
+        window.location.href = "http://localhost:5173";
       }
     } catch (error) {
       if (error.response && error.response.status === 400) {
